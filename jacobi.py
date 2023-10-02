@@ -5,14 +5,15 @@ def jacobi(A, b, x0, tol=0.1, max_iter=1000):
     newSolution = x0.copy()
 
     for iterationCount in range(max_iter):
-        #print(iter_count)
         for i in range(matrixDimension):
-            summation = sum(A[i][j] * currentSolution[j] for j in range(matrixDimension) if j != i)
+            summation = 0
+            for j in range(matrixDimension):
+                if j != i: summation += A[i][j] * currentSolution[j]
+                
             newSolution[i] = (b[i] - summation) / A[i][i]
 
         # Check for convergence
         error = ( max(abs(newSolution[i] - currentSolution[i]) for i in range(matrixDimension)) / max(abs(newSolution[i]) for i in range(matrixDimension)) ) * 100
-        print('parte de arriba: ', max(abs(newSolution[i] - currentSolution[i]) for i in range(matrixDimension)))
         print("Iteration: ", iterationCount, "error: ", error)
         if error < tol:
             print('Error: ', error)

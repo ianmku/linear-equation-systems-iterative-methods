@@ -45,7 +45,9 @@ def jacobiMethod2(A, b, xSeed, tolerance, maxIterations):
     newSolution = xSeed.copy()
     
     for iterationCount in range(maxIterations):
+        print('Numero de iteracion: ', iterationCount)
         for i in range(matrixDimension):
+            print()
             summation = sum(A[i][j] * currentSolution[j] for j in range(matrixDimension) if j != i)
             newSolution = (b[i] - summation) / A[i][i]
             print(newSolution)
@@ -62,4 +64,4 @@ b = np.array([24, 30, -24])
 xSeed = np.array([0, 0, 0])
 
 jacobiMethod(A, b, xSeed, 0.1)
-#jacobiMethod2(A, b, xSeed, 0.1, 1000)
+#acobiMethod2(A, b, xSeed, 0.1, 1000)
